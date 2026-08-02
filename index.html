@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Babby ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:linear-gradient(135deg,#F8C8DC,#E6D6FF);
+}
+
+/* Main container */
+#wrapper{
+    width:100vw;
+    height:200vh;
+    transition:transform 0.8s ease-in-out;
+}
+
+/* Both pages */
+.page{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+/* Floating animation */
+.float{
+    animation:float 2.5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+h1{
+    color:white;
+    font-size:4rem;
+    text-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+p{
+    color:white;
+    margin-top:15px;
+    font-size:1.2rem;
+}
+
+/* Buttons */
+
+.menu{
+    width:90%;
+    max-width:500px;
+}
+
+button{
+    width:100%;
+    margin:15px 0;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(10px);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+    background:rgba(255,255,255,.5);
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- PAGE 1 -->
+
+    <section class="page" onclick="nextPage()">
+
+        <div class="float">
+            <h1>Welcome Babby 💖</h1>
+            <p>Press anywhere to continue</p>
+        </div>
+
+    </section>
+
+    <!-- PAGE 2 -->
+
+    <section class="page">
+
+        <h1 style="font-size:3rem;">Choose One, Babby 💕</h1>
+
+        <p style="margin-bottom:30px;">
+            What would you like to do today?
+        </p>
+
+        <div class="menu">
+
+    <button onclick="window.location.href='food.html'">
+        🍜 What We Eat Today?
+    </button>
+
+    <button onclick="window.location.href='music.html'">
+        🎵 Music Playlist
+    </button>
+
+    <button onclick="window.location.href='wishlist.html'">
+        🎁 Babby Wish List
+    </button>
+
+    <button onclick="window.location.href='memories.html'">
+        📸 Memories
+    </button>
+
+</div>
+
+    </section>
+
+</div>
+
+<script>
+
+function nextPage(){
+
+    document.getElementById("wrapper").style.transform =
+    "translateY(-100vh)";
+
+}
+
+</script>
+
+</body>
+</html>
