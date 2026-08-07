@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>What We Eat Today? 🍜</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#F8C8DC,#E6D6FF);
+
+    overflow:hidden;
+
+}
+
+/* ===========================
+   PAGE CONTAINER
+=========================== */
+
+#wrapper{
+
+    width:100vw;
+    height:200vh;
+
+    transition:.7s ease;
+
+}
+
+/* ===========================
+   BOTH PAGES
+=========================== */
+
+.page{
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+}
+
+/* ===========================
+   FOOD PICKER
+=========================== */
+
+h1{
+
+    color:white;
+    font-size:50px;
+
+    text-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.subtitle{
+
+    color:white;
+    margin-top:12px;
+    margin-bottom:40px;
+    font-size:20px;
+
+}
+
+.foodRow{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+/* FOOD CARD */
+
+.foodCard{
+
+    width:230px;
+    height:150px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.35);
+
+    backdrop-filter:blur(12px);
+
+    color:white;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.45s;
+
+}
+
+.foodCard:hover{
+
+    transform:scale(1.05);
+
+    background:rgba(255,255,255,.5);
+
+}
+
+/* Selected animation */
+
+.selected{
+
+    position:fixed !important;
+
+    left:50% !important;
+    top:50% !important;
+
+    transform:translate(-50%,-50%) scale(1.5);
+
+    z-index:100;
+
+}
+
+.fade{
+
+    opacity:0;
+
+    transition:.4s;
+
+}
+
+.heart{
+
+    font-size:45px;
+
+    animation:beat 1.2s infinite;
+
+}
+
+@keyframes beat{
+
+0%,100%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.25);
+
+}
+
+}
+
+/* Third button */
+
+.special{
+
+margin-top:35px;
+
+width:500px;
+max-width:90%;
+
+height:70px;
+
+border:none;
+
+border-radius:22px;
+
+background:rgba(255,255,255,.45);
+
+backdrop-filter:blur(12px);
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.special:hover{
+
+transform:scale(1.03);
+
+}
+
+/* Bottom buttons */
+
+.buttons{
+
+margin-top:30px;
+
+}
+
+.action{
+
+padding:15px 28px;
+
+margin:10px;
+
+border:none;
+
+border-radius:18px;
+
+background:white;
+
+color:#d63384;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.action:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* ===========================
+   CELEBRATION PAGE
+=========================== */
+
+#celebrate{
+
+text-align:center;
+
+position:relative;
+
+}
+
+#celebrate h1{
+
+font-size:52px;
+
+margin-bottom:20px;
+
+}
+
+#winner{
+
+font-size:42px;
+
+font-weight:bold;
+
+color:white;
+
+margin-top:15px;
+
+margin-bottom:20px;
+
+}
+
+#message{
+
+font-size:24px;
+
+color:white;
+
+}
+
+#backBtn{
+
+margin-top:50px;
+
+}
+
+/* Floating emoji */
+
+#emojiContainer{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+}
+
+.foodEmoji{
+
+position:absolute;
+
+animation:floatUp 3s ease-out forwards;
+
+}
+
+@keyframes floatUp{
+
+0%{
+
+opacity:1;
+
+transform:
+translateY(0)
+translateX(0)
+scale(1);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translateY(-420px)
+translateX(calc(var(--drift)*1px))
+scale(1.8);
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="emojiContainer"></div>
+
+<div id="wrapper">
+
+<!-- ===================== -->
+<!-- PAGE 1 -->
+<!-- ===================== -->
+
+<section class="page">
+
+<h1>🍜 What We Eat Today?</h1>
+
+<p class="subtitle">
+Choose one, Babby 💖
+</p>
+
+<div class="foodRow">
+
+<button
+class="foodCard"
+id="food1">
+
+</button>
+
+<div class="heart">💖</div>
+
+<button
+class="foodCard"
+id="food2">
+
+</button>
+
+</div>
+
+<button
+class="special"
+id="special">
+
+✨ Something New Babby Wants
+
+</button>
+
+<div class="buttons">
+
+<button
+class="action"
+id="refresh">
+
+🔄 Refresh Choices
+
+</button>
+
+<button
+class="action"
+onclick="window.location.href='index.html'">
+
+⬅ Back
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ===================== -->
+<!-- PAGE 2 -->
+<!-- Celebration -->
+<!-- ===================== -->
+
+<section
+class="page"
+id="celebrate">
+
+<h1>
+💖 Date Decided! 💖
+</h1>
+
+<div id="winner"></div>
+
+<p id="message">
+
+Hope you enjoy your meal! 🥰
+
+</p>
+
+<button
+class="action"
+id="backBtn">
+
+⬅ Back
+
+</button>
+
+</section>
+
+<script>
+
+const foods = [
+    "🥩 Moo Krata",
+    "🍣 Sushiro",
+    "🍱 Katsu Midori",
+    "🍲 Dookki",
+    "🍢 Save One GO",
+    "🥩 Sam Steak",
+    "🍲 Lucky Suki",
+    "🍜 Hachiban",
+    "🛵 Order on LINE"
+];
+
+const emojiMap = {
+    "Moo Krata":"🥩",
+    "Sushiro":"🍣",
+    "Katsu Midori":"🍱",
+    "Dookki":"🍲",
+    "Save One GO":"🍢",
+    "Sam Steak":"🥩",
+    "Lucky Suki":"🍲",
+    "Hachiban":"🍜",
+    "Order on LINE":"🛵",
+    "Something New":"✨"
+};
+
+const wrapper = document.getElementById("wrapper");
+const food1 = document.getElementById("food1");
+const food2 = document.getElementById("food2");
+const winner = document.getElementById("winner");
+
+function randomFood(){
+
+    let a = Math.floor(Math.random()*foods.length);
+    let b;
+
+    do{
+        b = Math.floor(Math.random()*foods.length);
+    }while(a===b);
+
+    food1.innerHTML = foods[a];
+    food2.innerHTML = foods[b];
+
+}
+
+randomFood();
+
+document.getElementById("refresh").onclick=randomFood;
+
+food1.onclick=()=>choose(food1,food2);
+food2.onclick=()=>choose(food2,food1);
+
+document.getElementById("special").onclick=function(){
+
+    winner.innerHTML="✨ Something New Babby Wants ✨";
+
+    wrapper.style.transform="translateY(-100vh)";
+
+    launchEmoji("✨");
+
+};
+
+function choose(selected,other){
+
+    other.classList.add("fade");
+
+    selected.classList.add("selected");
+
+    setTimeout(()=>{
+
+        winner.innerHTML=selected.innerHTML;
+
+        wrapper.style.transform="translateY(-100vh)";
+
+        let name=selected.innerHTML.replace(/^[^\s]+\s/,"");
+
+        let emoji="✨";
+
+        for(let key in emojiMap){
+
+            if(name.includes(key)){
+
+                emoji=emojiMap[key];
+
+            }
+
+        }
+
+        launchEmoji(emoji);
+
+    },700);
+
+}
+
+function launchEmoji(emoji){
+
+    const container = document.getElementById("emojiContainer");
+
+    for(let i=0;i<30;i++){
+
+        const e = document.createElement("div");
+
+        e.className = "foodEmoji";
+        e.innerHTML = emoji;
+
+        e.style.left = (10 + Math.random()*80) + "vw";
+        e.style.top = (75 + Math.random()*10) + "vh";
+
+        e.style.fontSize = (24 + Math.random()*18) + "px";
+
+        e.style.setProperty(
+            "--drift",
+            (Math.random()*200)-100
+        );
+
+        e.style.animationDuration =
+            (2 + Math.random()*1.5) + "s";
+
+        container.appendChild(e);
+
+        setTimeout(()=>{
+            e.remove();
+        },3500);
+
+    }
+
+}
+
+document.getElementById("backBtn").onclick=function(){
+
+    wrapper.style.transform="translateY(0)";
+
+    food1.classList.remove("selected");
+    food2.classList.remove("selected");
+
+    food1.classList.remove("fade");
+    food2.classList.remove("fade");
+
+    randomFood();
+
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#F8C8DC,#E6D6FF);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    max-width:900px;
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    color:white;
+    font-size:3rem;
+    margin-bottom:25px;
+    text-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+#album{
+    transition:.45s ease;
+}
+
+.polaroid{
+    width:360px;
+    margin:auto;
+    background:white;
+    padding:15px 15px 70px;
+    border-radius:6px;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.polaroid img{
+    width:100%;
+    height:450px;
+    object-fit:cover;
+    border-radius:4px;
+    display:block;
+}
+
+.caption{
+    margin-top:20px;
+    font-size:24px;
+    font-weight:bold;
+    color:#444;
+}
+
+.controls{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+button{
+    padding:15px 28px;
+    border:none;
+    border-radius:18px;
+    background:white;
+    color:#d63384;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+#dots{
+    color:white;
+    font-size:26px;
+    margin-top:20px;
+    letter-spacing:8px;
+}
+
+.slide{
+    animation:slide .45s;
+}
+
+@keyframes slide{
+
+from{
+opacity:0;
+transform:translateX(80px);
+}
+
+to{
+opacity:1;
+transform:translateX(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>❤️ Our Story ❤️</h1>
+
+<div id="album">
+
+<div class="polaroid">
+
+<img id="memoryPhoto" src="images/photo1.jpg" alt="Memory">
+
+<div class="caption" id="memoryCaption">
+First Flower for you kub
+</div>
+
+</div>
+
+</div>
+
+<div class="controls">
+
+<button onclick="previousPhoto()">⬅ Previous</button>
+
+<button onclick="nextPhoto()">Next ➡</button>
+
+</div>
+
+<div id="dots">
+● ○ ○ ○ ○ ○ ○ ○
+</div>
+
+<button
+style="margin-top:30px;"
+onclick="window.location.href='index.html'">
+🏠 Back
+</button>
+
+<script>
+
+const memories = [
+
+{
+image:"images/photo1.jpg",
+caption:"First Flower for you kub"
+},
+
+{
+image:"images/photo2.jpg",
+caption:"🐈 First Siam date with you"
+},
+
+{
+image:"images/photo3.jpg",
+caption:"🏖️ Beach date"
+},
+
+{
+image:"images/photo4.jpg",
+caption:"🚗 Meland you babby"
+},
+
+{
+image:"images/photo5.jpg",
+caption:"🍣 Nama date"
+},
+
+{
+image:"images/photo6.jpg",
+caption:"🍻 Drunk drunkkk"
+},
+
+{
+image:"images/photo7.jpg",
+caption:"🕷️ Spider-Man Brand New Day"
+},
+
+{
+image:"images/photo8.jpg",
+caption:"❤️ I Love You 3000"
+}
+
+];
+
+let current = 0;
+
+const photo = document.getElementById("memoryPhoto");
+const caption = document.getElementById("memoryCaption");
+const album = document.getElementById("album");
+const dots = document.getElementById("dots");
+
+function updateDots(){
+
+    let html="";
+
+    for(let i=0;i<memories.length;i++){
+
+        html += i===current ? "● " : "○ ";
+
+    }
+
+    dots.innerHTML = html;
+
+}
+
+function updateMemory(){
+
+    album.classList.remove("slide");
+    void album.offsetWidth;
+    album.classList.add("slide");
+
+    photo.src = memories[current].image;
+    caption.innerHTML = memories[current].caption;
+
+    updateDots();
+
+}
+
+function nextPhoto(){
+
+    current++;
+
+    if(current>=memories.length){
+
+        current=0;
+
+    }
+
+    updateMemory();
+
+}
+
+function previousPhoto(){
+
+    current--;
+
+    if(current<0){
+
+        current=memories.length-1;
+
+    }
+
+    updateMemory();
+
+}
+
+// Keyboard
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="ArrowRight"){
+
+        nextPhoto();
+
+    }
+
+    if(e.key==="ArrowLeft"){
+
+        previousPhoto();
+
+    }
+
+});
+
+// Phone Swipe
+
+let startX=0;
+
+document.addEventListener("touchstart",function(e){
+
+    startX=e.changedTouches[0].screenX;
+
+});
+
+document.addEventListener("touchend",function(e){
+
+    let endX=e.changedTouches[0].screenX;
+
+    if(endX-startX>50){
+
+        previousPhoto();
+
+    }
+
+    if(startX-endX>50){
+
+        nextPhoto();
+
+    }
+
+});
+
+updateMemory();
+
+</script>
+
+</body>
+</html>

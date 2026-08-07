@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Welcome Babby ❤️</title>
+
+<style>
+
+/* ================================
+   RESET
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* ================================
+   BODY
+================================ */
+
+body{
+
+    width:100vw;
+    height:100vh;
+
+    overflow:hidden;
+
+    font-family:'Segoe UI',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #F8C8DC,
+        #E6D6FF
+    );
+
+    color:white;
+
+}
+
+
+/* ================================
+   MAIN WRAPPER
+================================ */
+
+#wrapper{
+
+    width:100vw;
+    height:200vh;
+
+    transition:
+    transform 0.8s ease-in-out;
+
+}
+
+
+/* ================================
+   EACH PAGE
+================================ */
+
+.page{
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+/* ================================
+   WELCOME PAGE
+================================ */
+
+#welcomePage{
+
+    position:relative;
+
+}
+
+
+/* ================================
+   WELCOME CONTENT
+================================ */
+
+.welcomeContent{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    width:100%;
+
+    padding:30px;
+
+}
+
+
+/* ================================
+   WELCOME TITLE
+================================ */
+
+.welcomeTitle{
+
+    font-size:
+    clamp(42px,8vw,72px);
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    0 8px 25px
+    rgba(0,0,0,0.15);
+
+    animation:
+    float 2.5s ease-in-out infinite;
+
+}
+
+
+/* ================================
+   PRESS TEXT
+================================ */
+
+.pressText{
+
+    font-size:
+    clamp(17px,4vw,24px);
+
+    font-weight:500;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    animation:
+    blink 1.2s infinite;
+
+    text-shadow:
+    0 4px 12px
+    rgba(0,0,0,0.15);
+
+}
+
+
+/* ================================
+   BLINK ANIMATION
+================================ */
+
+@keyframes blink{
+
+    0%,
+    100%{
+
+        opacity:1;
+
+    }
+
+    50%{
+
+        opacity:0.25;
+
+    }
+
+}
+
+
+/* ================================
+   FLOAT ANIMATION
+================================ */
+
+@keyframes float{
+
+    0%,
+    100%{
+
+        transform:
+        translateY(0);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-10px);
+
+    }
+
+}
+
+
+/* ================================
+   FLOATING HEARTS
+================================ */
+
+.heart{
+
+    position:absolute;
+
+    bottom:-50px;
+
+    font-size:25px;
+
+    opacity:0.45;
+
+    pointer-events:none;
+
+    animation:
+    heartFloat
+    linear
+    infinite;
+
+}
+
+
+@keyframes heartFloat{
+
+    0%{
+
+        transform:
+        translateY(0)
+        rotate(0deg);
+
+        opacity:0;
+
+    }
+
+    20%{
+
+        opacity:0.45;
+
+    }
+
+    80%{
+
+        opacity:0.45;
+
+    }
+
+    100%{
+
+        transform:
+        translateY(-110vh)
+        rotate(25deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* ================================
+   MENU PAGE
+================================ */
+
+#menuPage{
+
+    position:relative;
+
+    padding:30px;
+
+}
+
+
+/* ================================
+   MENU CONTENT
+================================ */
+
+.menuContent{
+
+    width:100%;
+
+    max-width:900px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+/* ================================
+   MENU TITLE
+================================ */
+
+.menuTitle{
+
+    font-size:
+    clamp(35px,7vw,55px);
+
+    margin-bottom:40px;
+
+    text-shadow:
+    0 8px 20px
+    rgba(0,0,0,0.15);
+
+}
+
+
+/* ================================
+   MENU GRID
+================================ */
+
+.menuGrid{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+
+/* ================================
+   MENU CARD
+================================ */
+
+.menuCard{
+
+    min-height:150px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:
+    rgba(255,255,255,0.9);
+
+    color:#d63384;
+
+    padding:25px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    box-shadow:
+    0 12px 30px
+    rgba(0,0,0,0.12);
+
+    transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+}
+
+
+.menuCard:hover{
+
+    transform:
+    translateY(-7px);
+
+    box-shadow:
+    0 18px 35px
+    rgba(0,0,0,0.18);
+
+}
+
+
+.menuCard:active{
+
+    transform:
+    scale(0.96);
+
+}
+
+
+/* ================================
+   MENU EMOJI
+================================ */
+
+.menuEmoji{
+
+    font-size:45px;
+
+    margin-bottom:12px;
+
+}
+
+
+/* ================================
+   MENU TEXT
+================================ */
+
+.menuText{
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:600px){
+
+    .menuGrid{
+
+        grid-template-columns:
+        1fr;
+
+        gap:15px;
+
+    }
+
+    .menuCard{
+
+        min-height:115px;
+
+        padding:20px;
+
+    }
+
+    .menuEmoji{
+
+        font-size:35px;
+
+    }
+
+    .menuText{
+
+        font-size:17px;
+
+    }
+
+    .menuTitle{
+
+        margin-bottom:25px;
+
+    }
+
+}
+
+
+/* ================================
+   BACK BUTTON
+================================ */
+
+.backButton{
+
+    margin-top:25px;
+
+    padding:
+    12px 25px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,0.9);
+
+    color:#d63384;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+    transform 0.3s ease;
+
+}
+
+
+.backButton:hover{
+
+    transform:
+    translateY(-3px);
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     MAIN WRAPPER
+================================== -->
+
+<div id="wrapper">
+
+
+    <!-- =================================
+         WELCOME PAGE
+    ================================== -->
+
+    <section
+    id="welcomePage"
+    class="page">
+
+
+        <div class="welcomeContent">
+
+
+            <h1 class="welcomeTitle">
+
+                Welcome Babby ❤️
+
+            </h1>
+
+
+            <div
+            class="pressText"
+            onclick="goToMenu()">
+
+                Press anywhere to continue
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Floating hearts -->
+
+        <div
+        class="heart"
+        style="
+        left:10%;
+        animation-duration:8s;
+        animation-delay:0s;
+        ">
+
+            ❤️
+
+        </div>
+
+
+        <div
+        class="heart"
+        style="
+        left:30%;
+        animation-duration:10s;
+        animation-delay:2s;
+        ">
+
+            💕
+
+
+        </div>
+
+
+        <div
+        class="heart"
+        style="
+        left:55%;
+        animation-duration:9s;
+        animation-delay:1s;
+        ">
+
+            ❤️
+
+        </div>
+
+
+        <div
+        class="heart"
+        style="
+        left:80%;
+        animation-duration:11s;
+        animation-delay:3s;
+        ">
+
+            💗
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         MENU PAGE
+         
+         PART 2 WILL CONTINUE HERE
+    ================================== -->
+
+    <section
+    id="menuPage"
+    class="page">
+
+
+        <div class="menuContent">
+
+
+            <h2 class="menuTitle">
+
+                What do you want to do? 💕
+
+            </h2>
+
+
+            <div class="menuGrid">
+
+
+                <!-- FOOD -->
+
+                <button
+                class="menuCard"
+                onclick="openFood()">
+
+                    <div class="menuEmoji">
+
+                        🍽️
+
+                    </div>
+
+                    <div class="menuText">
+
+                        What we eat today?
+
+                    </div>
+
+                </button>
+
+
+
+                <!-- MUSIC -->
+
+                <button
+                class="menuCard"
+                onclick="openMusic()">
+
+                    <div class="menuEmoji">
+
+                        🎵
+
+                    </div>
+
+                    <div class="menuText">
+
+                        Music playlist for you
+
+                    </div>
+
+                </button>
+
+
+
+                <!-- WISHLIST -->
+
+                <button
+                class="menuCard"
+                onclick="openWishlist()">
+
+                    <div class="menuEmoji">
+
+                        📝
+
+                    </div>
+
+                    <div class="menuText">
+
+                        Babby wish list
+
+                    </div>
+
+                </button>
+
+
+
+                <!-- MEMORIES -->
+
+                <button
+                class="menuCard"
+                onclick="openMemories()">
+
+                    <div class="menuEmoji">
+
+                        📸
+
+                    </div>
+
+                    <div class="menuText">
+
+                        Memories
+
+                    </div>
+
+                </button>
+
+
+            </div>
+
+
+            <button
+            class="backButton"
+            onclick="goToWelcome()">
+
+                ❤️ Back
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+<!-- =================================
+     PAGE NAVIGATION
+================================== -->
+
+<script>
+
+function goToMenu(){
+
+    document.getElementById("wrapper").style.transform =
+    "translateY(-100vh)";
+
+}
+
+
+function goToWelcome(){
+
+    document.getElementById("wrapper").style.transform =
+    "translateY(0)";
+
+}
+
+
+/* =================================
+   OPEN FOOD PAGE
+================================== */
+
+function openFood(){
+
+    window.location.href =
+    "food.html";
+
+}
+
+
+/* =================================
+   OPEN MUSIC PAGE
+================================== */
+
+function openMusic(){
+
+    window.location.href =
+    "music.html";
+
+}
+
+
+/* =================================
+   OPEN WISHLIST PAGE
+================================== */
+
+function openWishlist(){
+
+    window.location.href =
+    "wishlist.html";
+
+}
+
+
+/* =================================
+   OPEN MEMORIES PAGE
+================================== */
+
+function openMemories(){
+
+    window.location.href =
+    "memories.html";
+
+}
+
+
+/* =================================
+   CLICK ANYWHERE ON WELCOME PAGE
+================================== */
+
+document
+.getElementById("welcomePage")
+.addEventListener("click",function(){
+
+    goToMenu();
+
+});
+
+
+</script>
